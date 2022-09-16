@@ -1,0 +1,44 @@
+import styles from "./ProductItem.module.css";
+import { NavLink } from "react-router-dom";
+
+interface ProductItemProps {
+  name: string;
+  amount: number;
+  description: string;
+  id: number;
+  image: string;
+}
+
+const ProductItem: React.FC<ProductItemProps> = ({
+  name,
+  amount,
+  image,
+  description,
+  id,
+}) => {
+  return (
+    <div className={styles.product}>
+      <div className={styles.head}>
+        <h2 className={styles.name}>{name}</h2>
+        <div className={styles.price}>${amount}</div>
+      </div>
+      <div className={styles.content}>
+        <div className={styles.image}>
+          <img src={image} alt={name} />
+        </div>
+        <div className={styles.text}>
+          <p className={styles.description}>
+            {description.length < 70
+              ? description
+              : description.slice(0, 70) + "...."}
+          </p>
+          <NavLink to={`products`} className={styles.button}>
+            View Product
+          </NavLink>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProductItem;

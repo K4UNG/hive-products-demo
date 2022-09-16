@@ -1,5 +1,9 @@
+import ProductList from "../components/products/ProductList";
+
 const Products: React.FC = () => {
-    return <h1>Products</h1>
+    return <main>
+        <ProductList />
+    </main>
 }
 
 export default Products;
