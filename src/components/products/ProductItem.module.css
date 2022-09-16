@@ -39,7 +39,8 @@
 }
 
 .description {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--clr-netural-300);
 }
 
 .button {
@@ -48,6 +49,6 @@
     border: 2px solid var(--clr-primary);
     font-weight: 700;
     border-radius: 10px;
-    display: grid;
-    place-items: center;
+    padding: 5px;
+    text-align: center;
 }

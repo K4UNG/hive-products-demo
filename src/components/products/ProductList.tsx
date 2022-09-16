@@ -57,6 +57,7 @@ const ProductList: React.FC = () => {
             image={p.image}
             id={p.id}
             key={p.id}
+            category={p.category.name}
           />
         ))}
       </div>

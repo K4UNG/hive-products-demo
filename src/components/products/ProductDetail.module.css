@@ -1,0 +1,66 @@
+.wrapper {
+    padding: 1rem var(--padding);
+}
+
+.image {
+    border-radius: 15px;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.cat {
+    background-color: var(--clr-primary-75);
+    width: fit-content;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: var(--clr-neutral-900);
+    margin: .75em 0;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 3.5rem;
+}
+
+.description {
+    line-height: 1.4;
+    font-size: 1.4rem;
+    color: var(--clr-netural-300);
+}
+
+.price {
+    color: var(--clr-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin: .5em 0;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: fit-content;
+}
+
+.buttons>* {
+    width: 40px;
+    height: 40px;
+    outline: 1px solid var(--clr-netural-100);
+    background-color: transparent;
+    color: var(--clr-netural-100);
+    font-size: 1.4rem;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+}
+
+.cart {
+    background-color: var(--clr-primary);
+    color: var(--clr-neutral-800);
+    font-weight: 700;
+    padding: .6rem 1.5em;
+    font-size: 1.3rem;
+    border: 0;
+    border-radius: 10px;
+    margin: 1em 0;
+}

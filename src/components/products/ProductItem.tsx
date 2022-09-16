@@ -1,12 +1,14 @@
 import styles from "./ProductItem.module.css";
 import { NavLink } from "react-router-dom";
+import { currencyFormatter } from '../../util/currencyFormatter'
 
-interface ProductItemProps {
+export interface ProductItemProps {
   name: string;
   amount: number;
   description: string;
   id: number;
   image: string;
+  category: string;
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({
@@ -15,12 +17,13 @@ const ProductItem: React.FC<ProductItemProps> = ({
   image,
   description,
   id,
+  category
 }) => {
   return (
     <div className={styles.product}>
       <div className={styles.head}>
         <h2 className={styles.name}>{name}</h2>
-        <div className={styles.price}>${amount}</div>
+        <div className={styles.price}>{currencyFormatter(amount)}</div>
       </div>
       <div className={styles.content}>
         <div className={styles.image}>
@@ -32,7 +35,11 @@ const ProductItem: React.FC<ProductItemProps> = ({
               ? description
               : description.slice(0, 70) + "...."}
           </p>
-          <NavLink to={`products`} className={styles.button}>
+          <NavLink
+            to={`/products/${id}`}
+            state={{ name, description, amount, image, category }}
+            className={styles.button}
+          >
             View Product
           </NavLink>
         </div>
