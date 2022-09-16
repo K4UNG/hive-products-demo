@@ -1,0 +1,25 @@
+.cart {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+.cart svg {
+    width: 100%;
+}
+
+.quantity {
+    position: absolute;
+    background-color: var(--clr-primary);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--clr-netural-100);
+    font-weight: 700;
+    font-size: .8rem;
+    top: 0;
+    right: 0;
+    transform: translate(25%, -25%);
+}

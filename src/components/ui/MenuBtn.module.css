@@ -1,0 +1,12 @@
+.menu {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 0;
+    color: var(--clr-netural-100);
+    margin-left: 1rem;
+}
+
+.menu svg {
+    width: 100%;
+}
