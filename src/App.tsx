@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { authContext } from './store/authContext';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -9,14 +10,16 @@ import Auth from './pages/Auth';
 
 const App: React.FC = () => {
   const { pathname } = useLocation()
+  const { isLoggedin } = useContext(authContext);
+
   return <div>
-    {pathname !== '/auth' && <Navbar />}
+    {pathname !== '/auth' && isLoggedin && <Navbar />}
     <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/auth' element={<Auth />} />
-      <Route path='/products' element={<Products />} />
-      <Route path='/products/:id' element={<Product />} />
-      <Route path='/cart' element={<Cart />} />
+      {isLoggedin && <Route path='/' element={<Home />} />}
+      {!isLoggedin && <Route path='/auth' element={<Auth />} />}
+      {isLoggedin && <Route path='/products' element={<Products />} />}
+      {isLoggedin && <Route path='/products/:id' element={<Product />} />}
+      {isLoggedin && <Route path='/cart' element={<Cart />} />}
     </Routes>
   </div>
 }

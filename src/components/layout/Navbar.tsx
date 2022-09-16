@@ -3,18 +3,26 @@ import Logo from "../ui/Logo";
 import CloseBtn from "../ui/CloseBtn";
 import MenuBtn from "../ui/MenuBtn";
 import CartBtn from "../ui/CartBtn";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { authContext } from "../../store/authContext";
 
 const Navbar: React.FC = () => {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
+  const { logout } = useContext(authContext);
 
   function closeMenu() {
     setShow(false);
   }
 
   function showMenu() {
-    setShow(true)
+    setShow(true);
+  }
+
+  function logoutHandler() {
+    logout()
+    navigate('/auth')
   }
 
   return (
@@ -39,10 +47,13 @@ const Navbar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <button className={styles.logout}>Logout</button>
+          <button onClick={logoutHandler} className={styles.logout}>Logout</button>
         </li>
       </ul>
-      <div onClick={closeMenu} className={`${styles.overlay} ${show && styles.show}`} />
+      <div
+        onClick={closeMenu}
+        className={`${styles.overlay} ${show && styles.show}`}
+      />
     </nav>
   );
 };
