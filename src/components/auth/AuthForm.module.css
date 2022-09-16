@@ -22,6 +22,11 @@
     background-color: transparent;
     border: 1px solid var(--clr-netural-300-50);
     border-radius: 5px;
+    color: var(--clr-netural-100);
+}
+
+.form input.error {
+    border: 1px solid var(--clr-err);
 }
 
 .form input::placeholder {
@@ -42,6 +47,13 @@
     padding: .5em 1.5em;
     font-size: 1.2rem;
     border: 0;
+    transition: opacity 150ms ease;
+}
+
+.button.loading {
+    opacity: .5;
+    pointer-events: none;
+    user-select: none;
 }
 
 .mode {
