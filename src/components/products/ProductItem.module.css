@@ -25,6 +25,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 1rem;
+    align-items: center;
 }
 
 .image {
@@ -35,7 +36,7 @@
 
 .text {
     display: grid;
-    grid-template-rows: 130px auto;
+    grid-template-rows: .8fr .2fr;
 }
 
 .description {
@@ -50,5 +51,7 @@
     font-weight: 700;
     border-radius: 10px;
     padding: 5px;
-    text-align: center;
+    display: grid;
+    place-items: center;
+    margin-top: 5px;
 }
