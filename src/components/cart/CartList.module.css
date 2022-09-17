@@ -1,0 +1,23 @@
+.list {
+    margin-bottom: 2rem;
+}
+
+.summary {
+    font-size: 1.4rem;
+    margin: .25em;
+}
+
+.summary span {
+    color: var(--clr-primary);
+}
+
+.order {
+    color: white;
+    font-weight: 700;
+    background-color: var(--clr-primary);
+    padding: .5em 1em;
+    font-size: 1.5rem;
+    border: 0;
+    border-radius: 15px;
+    margin-top: .75em;
+}
