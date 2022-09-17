@@ -6,3 +6,31 @@
     font-size: 2rem;
     margin-bottom: .5em;
 }
+
+.paginator {
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+}
+
+.button {
+    width: 35px;
+    height: 40px;
+    border: 1px solid var(--clr-primary);
+    color: var(--clr-primary);
+    display: grid;
+    place-items: center;
+    background-color: transparent;
+    font-weight: 700;
+    border-radius: 5px;
+}
+
+.button.active {
+    background-color: var(--clr-primary);
+    color: var(--clr-netural-100)
+}
+
+.status {
+    font-weight: 700;
+    margin: 1em 0;
+}
