@@ -64,3 +64,14 @@
     place-items: center;
     margin-top: 5px;
 }
+
+@media (min-width: 780px) {
+    .product {
+        background-color: var(--clr-neutral-800);
+        margin: 0;
+    }
+
+    .name {
+        white-space: unset;
+    }
+}

@@ -1,5 +1,7 @@
 .wrapper {
     padding-bottom: 1rem;
+    max-width: 400px;
+    margin: auto;
 }
 
 .title {
@@ -33,4 +35,30 @@
 .status {
     font-weight: 700;
     margin: 1em 0;
+}
+
+@media (min-width: 780px) {
+    .wrapper {
+        max-width: 900px;
+    }
+
+    .list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: var(--clr-neutral-700);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        grid-gap: .5rem;
+    }
+}
+
+@media (min-width: 1300px) {
+    .wrapper {
+        max-width: unset;
+    }
+
+    .list {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
