@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -21,12 +21,21 @@ export const authContext = createContext<AuthValue>({
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      login(token);
+    }
+  }, [])
+
   function login(token: string) {
     setToken(token);
+    localStorage.setItem('token', token);
   }
 
   function logout() {
     setToken(null);
+    localStorage.removeItem('token');
   }
 
   const authValue: AuthValue = {
