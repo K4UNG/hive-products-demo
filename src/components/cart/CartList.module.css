@@ -1,5 +1,10 @@
 .list {
     margin-bottom: 2rem;
+    border-top: 1px solid var(--clr-netural-300-50);
+}
+
+.title {
+    margin-bottom: .5rem;
 }
 
 .summary {
@@ -15,9 +20,28 @@
     color: white;
     font-weight: 700;
     background-color: var(--clr-primary);
-    padding: .5em 1em;
+    padding: .35em 1em;
     font-size: 1.5rem;
     border: 0;
     border-radius: 15px;
     margin-top: .75em;
+}
+
+@media (min-width: 680px) {
+    .wrapper {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .list {
+        background-color: var(--clr-neutral-700);
+        padding: .5rem 1.5rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        border: 0;
+    }
+
+    .list>*+* {
+        border-top: 1px solid var(--clr-netural-300-50);
+    }
 }

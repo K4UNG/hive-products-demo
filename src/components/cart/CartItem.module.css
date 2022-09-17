@@ -2,8 +2,9 @@
     display: grid;
     grid-template-columns: 120px calc(100% - 150px - 2em) 30px;
     grid-column-gap: 1rem;
-    margin: 1em 0;
+    padding: 1em 0;
     width: 100%;
+    border-bottom: 1px solid var(--clr-netural-300-50);
 }
 
 .image {
@@ -44,4 +45,10 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--clr-primary);
+}
+
+@media (min-width: 680px) {
+    .item {
+        border: 0;
+    }
 }

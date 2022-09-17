@@ -3,6 +3,7 @@ import CartItem from "./CartItem";
 import { useContext } from "react";
 import { cartContext } from "../../store/cartContext";
 import { currencyFormatter } from "../../util/currencyFormatter";
+import BackBtn from "../ui/BackBtn";
 
 export interface CartItemType {
   name: string;
@@ -18,8 +19,9 @@ const CartList: React.FC = () => {
   const tax = total * 5/100;
   
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className={styles.wrapper}>
+      <BackBtn />
+      <h1 className={styles.title}>Cart</h1>
       <div className={styles.list}>
         {items.length === 0 && <h3>No items in cart</h3>}
         {items.map((item) => (
@@ -35,7 +37,7 @@ const CartList: React.FC = () => {
             Tax: <span>{currencyFormatter(tax)}</span>
           </h2>
           <h2 className={styles.summary}>
-            Grand total: <span>{currencyFormatter(total + tax)}</span>
+            Grand Total: <span>{currencyFormatter(total + tax)}</span>
           </h2>
           <button className={styles.order}>Order</button>
         </>
