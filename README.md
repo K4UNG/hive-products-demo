@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+<h1 style='font-weight: bold; text-align: center;'>Hive Store</h1>
+<div align='center'><a href='https://hive-store.netlify.app'>Live demo</a></div><br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](public/images/screenshot.png)
 
-## Available Scripts
+## **Built with**
 
-In the project directory, you can run:
+- React
+- Context API
+- TypeScript
+- CSS mobile-first
 
-### `npm start`
+I chose React instead of Nextjs for this project because users can't access the products page without being authenticated anyway so I didn't see the point in having server-side rendering.
+
+To be honest, I knew nothing about TypeScript before this (even though I added it in my portfolio) but I was about to learn it right after finishing my portfolio. I had to learn it in 2 days for this project so it might be a bit of a mess.
+
+I used plain CSS for styling because I love styling from scratch with CSS.
+
+## **Authentication and Cart**
+
+For user authentication, I chose the easy approach by storing the token in `localStorage`. Same for the cart items but the items are lost when the user switch accounts since the products in different accounts might differ according to the API.
+
+## **Design**
+
+![](public/images/design.png)
+
+I chose a darker theme with a cyan-blue color for the accent color. I kept the design neat for both mobile and desktop. I did improvise a bit, for example, since we will only have 4 pages, I chose to build a more simpler paginator than the one in the design which would be a lot more work.
+
+## 🛠 **Installation and Setup Instructions**
+
+1. Installation: `npm install`
+
+2. In the project directory, you can run: `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The page will reload if you make edits.
