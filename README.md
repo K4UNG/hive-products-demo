@@ -22,7 +22,7 @@ For user authentication, I chose the easy approach by storing the token in `loca
 
 ## **Edge Case**
 
-Since the I couldn't fetch the individual product data, I had to pass the state through `NavLink` of `react-router-dom` which means the state is lost when the user refreshes on the product detail page.
+Since the I couldn't fetch the individual product data, I had to pass the state through `NavLink` of `react-router-dom` which means it breaks when the user tries to access the indiviual product page through an independent link.
 
 ## **Design**
 
