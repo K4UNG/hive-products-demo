@@ -1,9 +1,11 @@
 import styles from "./CartList.module.css";
 import CartItem from "./CartItem";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { cartContext } from "../../store/cartContext";
 import { currencyFormatter } from "../../util/currencyFormatter";
 import BackBtn from "../ui/BackBtn";
+import { createPortal } from "react-dom";
+import Modal from "../ui/Modal";
 
 export interface CartItemType {
   name: string;
@@ -14,12 +16,58 @@ export interface CartItemType {
 }
 
 const CartList: React.FC = () => {
-  const { items, total } = useContext(cartContext);
+  const { items, total, clearCart } = useContext(cartContext);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<null | string>(null);
 
-  const tax = total * 5/100;
-  
+  const tax = (total * 5) / 100;
+
+  function orderHandler() {
+    setLoading(true);
+    setError(null);
+    fetch("https://assessment-api.hivestage.com/api/orders", {
+      method: "POST",
+      body: JSON.stringify({
+        orderEntries: items.map((item) => ({
+          productId: item.id,
+          productName: item.name,
+          amount: item.amount,
+          quantity: item.quantity,
+          lineTotal: 0,
+        })),
+        subTotal: total,
+        tax: tax,
+        total: total + tax,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setLoading(false);
+        setSuccess(true);
+        clearCart();
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }
+
   return (
     <div className={styles.wrapper}>
+      {success &&
+        createPortal(
+          <Modal closeModal={() => setSuccess(false)} />,
+          document.getElementById("modal")!
+        )}
       <BackBtn />
       <h1 className={styles.title}>Cart</h1>
       <div className={styles.list}>
@@ -39,7 +87,13 @@ const CartList: React.FC = () => {
           <h2 className={styles.summary}>
             Grand Total: <span>{currencyFormatter(total + tax)}</span>
           </h2>
-          <button className={styles.order}>Order</button>
+          {error && <div className={styles.error}>{error}</div>}
+          <button
+            onClick={orderHandler}
+            className={`${styles.order} ${loading && styles.loading}`}
+          >
+            Order
+          </button>
         </>
       )}
     </div>

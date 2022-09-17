@@ -33,6 +33,15 @@
     margin-top: .75em;
 }
 
+.order.loading {
+    opacity: .5;
+    pointer-events: none;
+}
+
+.error {
+    color: var(--clr-err)
+}
+
 @media (min-width: 680px) {
     .list {
         background-color: var(--clr-neutral-700);
