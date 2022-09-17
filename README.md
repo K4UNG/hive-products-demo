@@ -1,7 +1,7 @@
 <div align='center'><h1 style='font-weight: bold'>Hive Store</h1></div>
 <div align='center'><a href='https://hive-store.netlify.app'>Live demo</a></div><br>
 
-![](public/images/screenshot.png)
+![](public/images/Screenshot.png)
 
 ## **Built with**
 
