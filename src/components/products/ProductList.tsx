@@ -1,7 +1,8 @@
 import ProductItem from "./ProductItem";
 import styles from "./ProductList.module.css";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import { authContext } from "../../store/authContext";
+import { useLocation, NavLink } from "react-router-dom";
 
 interface Product {
   amount: number;
@@ -14,16 +15,20 @@ interface Product {
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [maxPage, setMaxPage] = useState(0);
+  const { search } = useLocation();
 
   const { token } = useContext(authContext);
+
+  const query = useMemo(() => new URLSearchParams(search), [search]);
+
+  let page = query.get('page') || '1'
 
   useEffect(() => {
     setLoading(true);
     fetch(
-      `https://assessment-api.hivestage.com/api/products?page=${page}&size=6`,
+      `https://assessment-api.hivestage.com/api/products?page=${+page - 1}&size=6`,
       {
         method: "GET",
         headers: {
@@ -47,14 +52,13 @@ const ProductList: React.FC = () => {
       });
   }, [page, token]);
 
-  function changePage(page: number) {
-    setPage(page);
+  function scrollTop() {
     window.scrollTo(0, 0);
   }
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={styles.title}>Products Page {page + 1}</h1>
+      <h1 className={styles.title}>Products Page {page}</h1>
 
       <div className={styles.list}>
         {loading && <div className={styles.status}>Loading...</div>}
@@ -79,13 +83,14 @@ const ProductList: React.FC = () => {
           .fill(0)
           .map((_, i) => {
             return (
-              <button
-                className={`${styles.button} ${i === page && styles.active}`}
-                onClick={() => changePage(i)}
+              <NavLink
+                to={`/products?page=${i+1}`}
+                className={`${styles.button} ${(i + 1).toString() === page && styles.active}`}
+                onClick={scrollTop}
                 key={i}
               >
                 {i + 1}
-              </button>
+              </NavLink>
             );
           })}
       </div>
