@@ -6,11 +6,13 @@ import CartBtn from "../ui/CartBtn";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import { authContext } from "../../store/authContext";
+import { cartContext } from "../../store/cartContext";
 
 const Navbar: React.FC = () => {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { logout } = useContext(authContext);
+  const { clearCart } = useContext(cartContext);
 
   function closeMenu() {
     setShow(false);
@@ -21,8 +23,9 @@ const Navbar: React.FC = () => {
   }
 
   function logoutHandler() {
-    logout()
-    navigate('/auth')
+    logout();
+    clearCart();
+    navigate("/auth");
   }
 
   return (
@@ -47,7 +50,9 @@ const Navbar: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <button onClick={logoutHandler} className={styles.logout}>Logout</button>
+          <button onClick={logoutHandler} className={styles.logout}>
+            Logout
+          </button>
         </li>
       </ul>
       <div

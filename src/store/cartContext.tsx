@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState, useEffect } from "react";
 import { CartItemType } from "../components/cart/CartList";
 
 interface CartContextValue {
@@ -6,6 +6,7 @@ interface CartContextValue {
   removeItem(id: number): void;
   decreaseItem(id: number): void;
   increaseItem(id: number): void;
+  clearCart(): void;
   quantity: number;
   items: CartItemType[];
   total: number;
@@ -18,11 +19,30 @@ export const cartContext = createContext<CartContextValue>({
   removeItem() {},
   decreaseItem() {},
   increaseItem() {},
+  clearCart() {},
   total: 0,
 });
 
 const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItemType[]>([]);
+  const [first, setFirst] = useState(true);
+
+  useEffect(() => {
+    const items = localStorage.getItem('cart') || '[]';
+    setItems(JSON.parse(items));
+  }, [])
+
+  useEffect(() => {
+    if (first) {
+        setFirst(false);
+        return;
+    }
+    updateLS(items)
+  }, [items, first])
+
+  function updateLS(items: CartItemType[]) {
+    localStorage.setItem('cart', JSON.stringify(items));
+  }
 
   function addItem(item: CartItemType, amount: number) {
     const result = items.find((i) => i.id === item.id);
@@ -71,11 +91,16 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     }
   }
 
+  function clearCart() {
+    setItems([])
+  }
+
   const cartValue: CartContextValue = {
     addItem,
     removeItem,
     decreaseItem,
     increaseItem,
+    clearCart,
     quantity: items.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0),
