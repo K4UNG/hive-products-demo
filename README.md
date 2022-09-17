@@ -20,6 +20,10 @@ I used plain CSS for styling because I love styling from scratch with CSS.
 
 For user authentication, I chose the easy approach by storing the token in `localStorage`. Same for the cart items but the items are lost when the user switch accounts since the products in different accounts might differ according to the API.
 
+## **Edge Case**
+
+Since the I couldn't fetch the individual product data, I had to pass the state through `NavLink` of `react-router-dom` which means the state is lost when the user refresh on the product detail page.
+
 ## **Design**
 
 ![](public/images/design.png)
