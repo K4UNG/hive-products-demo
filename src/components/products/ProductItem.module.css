@@ -74,4 +74,13 @@
     .name {
         white-space: unset;
     }
+
+    .button {
+        transition: color 150ms ease, background-color 150ms ease;
+    }
+
+    .button:hover {
+        background-color: var(--clr-primary);
+        color: var(--clr-neutral-800);
+    }
 }

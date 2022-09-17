@@ -51,3 +51,9 @@ ul {
   width: 90%;
   margin: auto;
 }
+
+@media (min-width: 1300px) {
+  .wrapper {
+    width: 80%;
+  }
+}
