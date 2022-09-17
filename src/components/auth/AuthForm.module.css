@@ -9,6 +9,7 @@
     width: 90%;
     padding: 1rem;
     border-radius: 10px;
+    max-width: 450px;
 }
 
 .form label {
@@ -68,4 +69,14 @@
     text-decoration: underline;
     color: var(--clr-primary);
     font-weight: 600;
+}
+
+@media (min-width: 680px) {
+    .form {
+        padding: 1rem 2rem;
+    }
+
+    .mode {
+        font-size: 1rem;
+    }
 }
