@@ -50,7 +50,7 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setItems((prev) => {
         return prev.map((i) => {
           if (i.id === item.id) {
-            return {...item, quantity: item.quantity + amount}
+            return {...i, quantity: i.quantity + amount}
           }
           return i;
         });

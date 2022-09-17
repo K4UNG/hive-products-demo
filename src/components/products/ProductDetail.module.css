@@ -6,6 +6,7 @@
     border-radius: 15px;
     aspect-ratio: 1;
     object-fit: cover;
+    max-width: 400px;
 }
 
 .cat {
@@ -62,7 +63,39 @@
     font-weight: 700;
     padding: .6rem 1.5em;
     font-size: 1.3rem;
-    border: 0;
+    border: 2px solid var(--clr-primary);
     border-radius: 10px;
     margin: 1em 0;
+}
+
+@media (min-width: 780px) {
+    .grid {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .image {
+        max-width: 500px;
+        width: 50%;
+    }
+
+    .content {
+        max-width: 500px;
+    }
+
+    .cart {
+        transition: background-color 100ms ease, color 100ms ease;
+    }
+
+    .cart:hover {
+        background-color: transparent;
+        color: var(--clr-primary);
+    }
+}
+
+@media (min-width: 1100px) {
+    .grid {
+        gap: 4rem;
+    }
 }

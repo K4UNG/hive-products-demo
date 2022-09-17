@@ -38,19 +38,23 @@ const ProductDetail: React.FC = () => {
   return (
     <div className={styles.wrapper}>
       <BackBtn />
-      <img className={styles.image} src={image} alt={name} />
-      <div className={styles.cat}>{category}</div>
-      <h1 className={styles.name}>{name}</h1>
-      <p className={styles.description}>{description}</p>
-      <div className={styles.price}>{currencyFormatter(amount)}</div>
-      <div className={styles.buttons}>
-        <button onClick={removeHandler}>-</button>
-        <div>{number}</div>
-        <button onClick={addHandler}>+</button>
+      <div className={styles.grid}>
+        <img className={styles.image} src={image} alt={name} />
+        <div className={styles.content}>
+          <div className={styles.cat}>{category}</div>
+          <h1 className={styles.name}>{name}</h1>
+          <p className={styles.description}>{description}</p>
+          <div className={styles.price}>{currencyFormatter(amount)}</div>
+          <div className={styles.buttons}>
+            <button onClick={removeHandler}>-</button>
+            <div>{number}</div>
+            <button onClick={addHandler}>+</button>
+          </div>
+          <button onClick={addToCart} className={styles.cart}>
+            Add to Cart
+          </button>
+        </div>
       </div>
-      <button onClick={addToCart} className={styles.cart}>
-        Add to Cart
-      </button>
     </div>
   );
 };
