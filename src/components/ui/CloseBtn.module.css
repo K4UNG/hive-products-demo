@@ -4,3 +4,9 @@
     background-color: transparent;
     border: 0;
 }
+
+@media (min-width: 720px) {
+    .close {
+        display: none;
+    }
+}

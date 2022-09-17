@@ -3,7 +3,7 @@ import Logo from "../ui/Logo";
 import CloseBtn from "../ui/CloseBtn";
 import MenuBtn from "../ui/MenuBtn";
 import CartBtn from "../ui/CartBtn";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState, useContext } from "react";
 import { authContext } from "../../store/authContext";
 import { cartContext } from "../../store/cartContext";
@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const { logout } = useContext(authContext);
   const { clearCart } = useContext(cartContext);
+  const { pathname } = useLocation();
 
   function closeMenu() {
     setShow(false);
@@ -32,7 +33,7 @@ const Navbar: React.FC = () => {
     <nav className={styles.nav}>
       <Logo />
       <div className={styles.mobile}>
-        <CartBtn />
+        {pathname !== "/cart" && <CartBtn />}
         <MenuBtn clickHandler={showMenu} />
       </div>
       <ul className={`${styles.links} ${show && styles.show}`}>
@@ -40,15 +41,30 @@ const Navbar: React.FC = () => {
           <CloseBtn clickHandler={closeMenu} />
         </li>
         <li>
-          <NavLink onClick={closeMenu} className={styles.link} to="/">
+          <NavLink
+            onClick={closeMenu}
+            className={() =>
+              pathname === "/" ? `${styles.link} ${styles.active}` : styles.link
+            }
+            to="/"
+          >
             home
           </NavLink>
         </li>
         <li>
-          <NavLink onClick={closeMenu} className={styles.link} to="/products">
+          <NavLink
+            onClick={closeMenu}
+            className={() =>
+              pathname === "/products"
+                ? `${styles.link} ${styles.active}`
+                : styles.link
+            }
+            to="/products"
+          >
             products
           </NavLink>
         </li>
+        <li className={styles.cart}>{pathname !== "/cart" && <CartBtn />}</li>
         <li>
           <button onClick={logoutHandler} className={styles.logout}>
             Logout
