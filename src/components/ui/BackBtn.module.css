@@ -1,0 +1,15 @@
+.button {
+    color: var(--clr-netural-300-50);
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    gap: .5em;
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 1em;
+}
+
+.button svg {
+    width: 30px;
+}
