@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const { isLoggedin } = useContext(authContext);
 
   return (
-    <div>
+    <div className="wrapper">
       {pathname !== "/auth" && isLoggedin && <Navbar />}
       <Routes>
         {isLoggedin && <Route path="/" element={<Home />} />}
