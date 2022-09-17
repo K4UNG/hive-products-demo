@@ -1,11 +1,13 @@
 import { NavLink } from "react-router-dom";
 import styles from './CartBtn.module.css';
+import { useContext } from "react";
+import { cartContext } from "../../store/cartContext";
 
 const CartBtn: React.FC = () => {
-    const quantity = 1;
+  const { quantity } = useContext(cartContext);
   return (
     <NavLink to="cart" className={styles.cart}>
-        {quantity === 1 && <div className={styles.quantity} >{quantity}</div>}
+        {quantity !== 0 && <div className={styles.quantity} >{quantity}</div>}
       <svg
         width="38"
         height="39"

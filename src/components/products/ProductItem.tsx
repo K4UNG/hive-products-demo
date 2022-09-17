@@ -37,7 +37,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
           </p>
           <NavLink
             to={`/products/${id}`}
-            state={{ name, description, amount, image, category }}
+            state={{ name, description, amount, image, category, id }}
             className={styles.button}
           >
             View Product

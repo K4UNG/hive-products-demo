@@ -5,8 +5,10 @@ interface CartContextValue {
   addItem(item: CartItemType, amount: number): void;
   removeItem(id: number): void;
   decreaseItem(id: number): void;
+  increaseItem(id: number): void;
   quantity: number;
   items: CartItemType[];
+  total: number;
 }
 
 export const cartContext = createContext<CartContextValue>({
@@ -15,12 +17,12 @@ export const cartContext = createContext<CartContextValue>({
   addItem() {},
   removeItem() {},
   decreaseItem() {},
+  increaseItem() {},
+  total: 0,
 });
 
 const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<CartItemType[]>([]);
-
-  console.log(items)
 
   function addItem(item: CartItemType, amount: number) {
     const result = items.find((i) => i.id === item.id);
@@ -28,7 +30,7 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setItems((prev) => {
         return prev.map((i) => {
           if (i.id === item.id) {
-            i.quantity += amount;
+            return {...item, quantity: item.quantity + amount}
           }
           return i;
         });
@@ -42,6 +44,17 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     setItems((prev) => prev.filter((i) => i.id !== id));
   }
 
+  function increaseItem(id: number) {
+    setItems(prev => {
+        return prev.map(item => {
+            if (item.id === id) {
+                return {...item, quantity: item.quantity + 1}
+            }
+            return item
+        })
+    })
+  }
+
   function decreaseItem(id: number) {
     const item = items.find((i) => i.id === id);
     if (item?.quantity === 1) {
@@ -50,7 +63,7 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       setItems((prev) => {
         return prev.map((i) => {
           if (i.id === id) {
-            i.quantity--;
+            return {...i, quantity: i.quantity - 1}
           }
           return i;
         });
@@ -62,13 +75,19 @@ const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     addItem,
     removeItem,
     decreaseItem,
+    increaseItem,
     quantity: items.reduce((sum, item) => {
       return sum + item.quantity;
     }, 0),
     items,
+    total: items.reduce((sum, item) => {
+      return sum + item.amount * item.quantity;
+    }, 0),
   };
 
-  return <cartContext.Provider value={cartValue}>{children}</cartContext.Provider>;
+  return (
+    <cartContext.Provider value={cartValue}>{children}</cartContext.Provider>
+  );
 };
 
 export default CartProvider;
